@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>papernet</title>
+    <style>
+      body {
+        font-family: Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      #welcome-text {
+        background-color: #f2f2f2;
+        color: black;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 2rem;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      #input-container {
+        display: inline-block;
+        border: 2px solid black;
+        border-top-right-radius: 10px;
+        padding: 10px;
+        background-color: white;
+      }
+
+      #text-input {
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        width: 150px;
+        box-sizing: border-box;
+      }
+
+      #submit-button {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-left: 10px;
+      }
+
+      #notification {
+        background-color: #f9f9f9;
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 480px) {
+        body {
+          height: auto;
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 20px;
+        }
+
+        #input-container {
+          display: block;
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>papernet</h1>
+    <div id="input-container">
+      <input type="text" id="text-input">
+      <button id="submit-button">Send</button>
+    </div>
+    <div id="welcome-text">Type what you want. Only who is standing here can see what you write and only for a short time. The site you see is self-hosted in-house on a secure https connection and hard wired to the thermal printer before you. No data is stored or sent to any other server. It's just you, your words and the shredder (and maybe the Internet Service Provider of this space if they so choose...).</div>
+    <div id="notification"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const textInput = document.getElementById('text-input');
+      const notification = document.getElementById('notification');
+
+      function sendText() {
+        const text = textInput.value;
+        const transformedText = transformText(text);
+        socket.emit('text', transformedText);
+
+        // Clear the text input field
+        textInput.value = '';
+
+        // Show the notification
+        notification.textContent = `Message sent: ${text}`;
+        notification.style.display = 'block';
+
+        // Hide the notification after 3 seconds
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 3000);
+      }
+
+      function transformText(text) {
+        const upsideDownChars = {
+          a: 'ɐ',
+          b: 'q',
+          c: 'ɔ',
+          d: 'p',
+          e: 'ǝ',
+          f: 'ɟ',
+          g: 'ƃ',
+          h: 'ɥ',
+          i: 'ᴉ',
+          j: 'ɾ',
+          k: 'ʞ',
+          l: 'l',
+          m: 'ɯ',
+          n: 'u',
+          o: 'o',
+          p: 'd',
+          q: 'b',
+          r: 'ɹ',
+          s: 's',
+          t: 'ʇ',
+          u: 'n',
+          v: 'ʌ',
+          w: 'ʍ',
+          x: 'x',
+          y: 'ʎ',
+          z: 'z',
+          0: '0',
+          1: '⇂',
+          2: '⇂',
+          3: 'Ɛ',
+          4: 'ᔭ',
+          5: '5',
+          6: '9',
+          7: 'Ɫ',
+          8: '8',
+          9: '6',
+          '?': '¿',
+          '.': '˙',
+          '!': '¡'
+        };
+
+        const transformedChars = Array.from(text)
+          .map(char => upsideDownChars[char.toLowerCase()] || char)
+          .reverse()
+          .join('');
+
+        return transformedChars;
+      }
+
+      document.getElementById('submit-button').addEventListener('click', sendText);
+
+      textInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          sendText();
+        }
+      });
+    </script>
+  </body>
+</html>
