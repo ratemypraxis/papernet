@@ -1,14 +1,17 @@
 const https = require('https');
 const fs = require('fs');
 const app = require('express')();
+// PLEASE NOTE: In order to run this server securley with HTTPS you will need a domain name & certificate. 
+// replace values in {PATHTOKEY} & {PATHTOCERT} with the path to your certificate and key on the server machine.
 const server = https.createServer({
-    key: fs.readFileSync('papernet.simsam.me.key'),
-    cert: fs.readFileSync('papernet_simsam_me.crt')
+    key: fs.readFileSync('{PATHTOKEY}'),
+    cert: fs.readFileSync('{PATHTOCERT}')
 }, app);
 const io = require('socket.io')(server);
-
 const ipp = require('ipp');
-const printerURI = 'http://localhost:631/printers/thermal'; // replace PRINTER_NAME with your printer name
+
+// replace {PRINTER_NAME} with the name you chose or default name of your printer
+const printerURI = 'http://localhost:631/printers/{PRINTER_NAME}'; 
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
