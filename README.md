@@ -20,10 +20,7 @@
     ![RPI diagram](https://cdn.sparkfun.com/assets/learn_tutorials/1/5/9/5/GPIO.png)
 8. Time to power it all on so you can configure & test your printer! If your printer came with a test printout in the box, look at it closely for voltage and baud rate. Either way follow steps in the [Adafruit tutorial linked here](https://learn.adafruit.com/networked-thermal-printer-using-cups-and-raspberry-pi/connect-and-configure-printer) to enable printing via lp & over the network on your printer. Be sure to only follow steps relevant for TTL printers - USB steps do not apply.
   - Note: if your printer is still printing gibberish try making sure the voltage is correct & rebooting.
-7. Now that your thermal printer is all set up, time to run the server & give it a try! With the thermal printer & shredder powered on, run the server from your RPI with
-```
-node server.js
-```
-8. Lastly, navigate to your domain or sub-domain on any computer or smartphone to send a message & watch it shred ~
+7. Now that your thermal printer is all set up, time to run the server & give it a try! With the thermal printer & shredder powered on, run the node server from your RPI.
+8. Lastly, navigate to your domain or sub-domain on any computer or smartphone on your network to send a message & watch it shred ~
 
 That's the gist! Feel welcome to reach out with any Qs.
