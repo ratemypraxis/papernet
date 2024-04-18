@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>papernet</title>
+
+    <link rel="stylesheet" href ="https://www.2nd.systems/stylesheets/style.css">
+    <script src="../scripts/clock.js"></script>
+  </head>
+
+  <body id="bod" onload ="refreshTheClock()">
+<header>
+    <h1>
+        <button id="pageTitle" 
+        onclick=" window.open('../index.html','_self')">papernet</button>
+        </h1>
+</header>
+  <main>
+    <!-- Flexible Photo Grid adapted from W3:https://www.w3schools.com/howto/howto_js_image_grid.asp  -->
+  
+    <div class="row">
+      <div class="columnV">
+        <div class="box">
+          <h1 style="color: white; padding-bottom: 10px;">
+            In Exhibition
+          </h1>
+          <p style="padding: 15px; font-size: 18px;">
+
+           <img style="border-radius: 15px;" src="https://www.2nd.systems/images/ylangPapernet.jpg"> 
+          </p>          
+        </div>
+        <div class="box">
+          <h1 style="color: white; padding-bottom: 10px;">
+            Demo
+          </h1>
+          <p style="padding: 15px; font-size: 18px;">
+  
+           <img style="border-radius: 15px;" src="https://www.2nd.systems/images/papernetDemo.gif"> 
+          </p>          
+        </div>
+
+    </div>
+    <div class="columnV">
+      <div class="box">
+        <h1 style="color: white; padding-bottom: 10px;">
+          After a Long (Software 4 Artists) Day
+        </h1>
+        <p style="padding: 15px; font-size: 18px;">
+
+         <img style="border-radius: 15px;" src="images/papernet.jpg"> 
+        </p>          
+      </div>
+      <div class="box">
+        <h1 style="color: white; padding-bottom: 10px;">
+          Early Prototype (w/ Audio)
+        </h1>
+        <p style="padding: 15px; font-size: 18px;">
+
+          <iframe src="https://drive.google.com/file/d/1Yty64iGby4Od_0O24E775831R5KkawXw/preview" width="640" height="480" allow="autoplay"></iframe>          
+        </p>          
+      </div>
+
+
+        </div>
+  </main>
+  <footer>
+    <p>
+      Thanks for visiting my page on this lovely
+      <text id="weekd"></text>
+      <text id="when"></text>!
+    </p>
+  </footer>
+    </body>
+  </html>
